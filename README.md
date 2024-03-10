@@ -3,4 +3,4 @@ to run the frontend with reactjs :
     git clone https://your-repository-url
     cd path-to-your-project
     npm install
-    pm start
+    npm start
