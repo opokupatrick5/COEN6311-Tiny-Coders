@@ -7,7 +7,8 @@ import About from "../about/About";
 import Blog from "../blog/Blog";
 import Services from "../services/Services";
 import Contact from "../contact/Contact";
-import Login from "../Login/Login"; // Make sure the path is correct based on your directory structure
+import Login from "../Login/Login"; 
+import singup from "../signup/Signup"
 
 const Pages = () => {
   return (
@@ -20,7 +21,9 @@ const Pages = () => {
           <Route exact path='/services' component={Services} />
           <Route exact path='/blog' component={Blog} />
           <Route exact path='/contact' component={Contact} />
-          <Route exact path='/login' component={Login} /> {/* Add this line */}
+          <Route exact path='/login' component={Login} /> 
+          <Route exact path='/signup' component={singup} /> 
+
         </Switch>
         <Footer />
       </Router>

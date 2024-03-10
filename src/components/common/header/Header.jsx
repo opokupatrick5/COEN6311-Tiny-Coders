@@ -28,7 +28,10 @@ const Header = () => {
               <span>to</span> The Bookings
             </h4>
             <button className='btn1' onClick={() => history.push('/login')}> 
-              <i className='fa fa-sign-out'></i> Sign In
+              <i className='fa fa-sign-out'></i> Login
+            </button>
+            <button className='btn2' onClick={() => history.push('/signup')}>
+            <i className='fa fa-user-plus'></i> SignUp
             </button>
           </div>
 

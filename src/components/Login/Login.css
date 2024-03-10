@@ -42,12 +42,12 @@
     padding: 12px 20px;
     border: none;
     border-radius: 50px;
-    cursor: pointer;
+    cursor: progress;
     font-size: 1rem;
     font-weight: 900; 
     transition: background-color 0.3s;
 }
 
 .login-button:hover {
-    background-color: #171517;
+    background-color: #0ab7ce;
 }
