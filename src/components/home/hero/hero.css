@@ -71,4 +71,8 @@ form h4 {
   font-size: 50px;
   text-shadow: 00 00 20px rgb(0, 0, 0); 
 }
+.header, .hero, .form-container {
+  position: relative; 
+  z-index: 1; 
+}
 

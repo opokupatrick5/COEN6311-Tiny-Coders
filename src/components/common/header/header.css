@@ -80,7 +80,7 @@ header .toggle {
 }
 
 .btn1:hover, .btn2:hover {
-  background-color: rgb(23, 5, 5);
+  background-color: rgb(53, 23, 23);
 }
 
 .btn1 i , .btn2 i {
@@ -91,5 +91,23 @@ header .toggle {
   .btn1, .btn2{
     padding:8px 8p;
     font-size: 15px;
+  }
+}
+
+.logo img {
+  width: 128px; 
+  height: auto; 
+  transition: width 0.3s ease; 
+}
+
+@media (max-width: 768px) {
+  .logo img {
+      width: 80px; 
+  }
+}
+
+@media (max-width: 576px) {
+  .logo img {
+      width: 60px; 
   }
 }
