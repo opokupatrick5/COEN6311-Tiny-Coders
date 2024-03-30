@@ -1,22 +1,40 @@
 import React, { useState } from 'react';
 import './Login.css'; 
+import api from "../../services/api";
+import { message } from 'antd';
 
-const Login = () => {
-    const [email, setEmail] = useState('');
+const Login = ({ history }) => {
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await api.post('login/', { username, password });
+            localStorage.setItem('userInfo', JSON.stringify(response.data));
+
+            history.push('/dashboard/packages');
+            window.location.reload()
+        } catch (error) {
+            // Handle login error
+            message.error('Invalid credentials');
+            console.error('Login failed:', error);
+        }
+    };
 
     return (
         <div className="login-container">
-            <form className="login-form">
+            <form className="login-form" onSubmit={handleSubmit}>
                 <h2>Login</h2>
                 <div className="input-group">
                     <i className="fa-solid fa-user"></i>
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="username">Username:</label>
                     <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        type="text"
+                        id="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                 </div>

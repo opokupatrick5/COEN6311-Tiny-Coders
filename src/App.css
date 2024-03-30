@@ -172,3 +172,6 @@ img {
     height: 30vh;
   }
 }
+.ant-message {
+  z-index: 9999; /* Set a high z-index value */
+}

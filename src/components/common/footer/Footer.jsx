@@ -5,6 +5,9 @@ import "./footer.css"
 const Footer = () => {
   return (
     <>
+    <div id="footer">
+
+  
       <section className='footerContact'>
         <div className='container'>
           <div className='send flex'>
@@ -47,7 +50,7 @@ const Footer = () => {
     <p>© 2024 TinyCoders.KBE. All Rights Reserved.</p>
     <a href='/terms-of-service'>Terms of Service</a> | <a href='/privacy-policy'>Privacy Policy</a>
 </div>
-
+</div>
     </>
   )
 }
