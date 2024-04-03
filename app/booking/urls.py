@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import UserRegistrationAPIView
 from .views import UserRegistrationAPIView, UserAuthenticationAPIView
-from .views import FlightListCreate, HotelListCreate, EditPackageAPIView, AddPackageAPIView, HotelRetrieveUpdateDestroy, AddBookingAPIView, ActivityListCreate, ActivityRetrieveUpdateDestroy, FlightRetrieveUpdateDestroy, PackageListCreate, PackageRetrieveUpdateDestroy, BookingListCreate, BookingRetrieveUpdateDestroy
+from .views import FlightListCreate, HotelListCreate, EditPackageAPIView, AddPackageAPIView, HotelRetrieveUpdateDestroy, ActivityListCreate, ActivityRetrieveUpdateDestroy, FlightRetrieveUpdateDestroy, PackageListCreate, PackageRetrieveUpdateDestroy, BookingListCreate, BookingRetrieveUpdateDestroy
 from .apiViews.flightAPIView import FlightAPIView
 
 urlpatterns = [
