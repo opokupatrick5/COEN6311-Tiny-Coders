@@ -50,10 +50,20 @@ class PackageSerializer(serializers.ModelSerializer):
 
 class BookingSerializer(serializers.ModelSerializer):
     package = PackageSerializer()
+    user = CustomUserSerializer()
 
     class Meta:
         model = Booking
         fields = ['id', 'package', 'user', 'total_price', 'created_at', 'updated_at', 'is_cancelled']
+
+class AddBookingSerializer(serializers.ModelSerializer):
+    package = serializers.PrimaryKeyRelatedField(queryset=Package.objects.all(), many=False)
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), many=False)
+
+    class Meta:
+        model = Booking
+        fields = ['id', 'package', 'user', 'total_price', 'created_at', 'updated_at', 'is_cancelled']
+
 
 class AddPackageSerializer(serializers.ModelSerializer):
     flights = serializers.PrimaryKeyRelatedField(queryset=Flight.objects.all(), many=True)
