@@ -4,10 +4,9 @@ from rest_framework.response import Response
 from .serializers import UserRegistrationSerializer, UserAuthenticationSerializer
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework import generics
+from rest_framework import generics, permissions
 from .models import Flight, Hotel, Activity, Package, Booking
-from .serializers import FlightSerializer, HotelSerializer, ActivitySerializer, PackageSerializer, AddPackageSerializer, \
-    BookingSerializer
+from .serializers import FlightSerializer, HotelSerializer, ActivitySerializer, PackageSerializer, AddPackageSerializer, AddBookingSerializer, BookingSerializer
 
 
 class UserRegistrationAPIView(APIView):
@@ -49,20 +48,26 @@ class UserAuthenticationAPIView(APIView):
         else:
             return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
-
+        
+        
 class FlightListCreate(generics.ListCreateAPIView):
-    queryset = Flight.objects.all()
     serializer_class = FlightSerializer
+    def get_queryset(self):
+        return Flight.objects.all().order_by('-created_at'
+
+
 
 
 class FlightRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Flight.objects.all()
     serializer_class = FlightSerializer
 
-
 class HotelListCreate(generics.ListCreateAPIView):
-    queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
+    def get_queryset(self):
+        return Hotel.objects.all().order_by('-created_at')
+
+
 
 
 class HotelRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
@@ -71,8 +76,11 @@ class HotelRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ActivityListCreate(generics.ListCreateAPIView):
-    queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
+    def get_queryset(self):
+        return Activity.objects.all().order_by('-created_at')
+
+
 
 
 class ActivityRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
@@ -84,25 +92,37 @@ class AddPackageAPIView(generics.CreateAPIView):
     queryset = Package.objects.all()
     serializer_class = AddPackageSerializer
 
-
 class EditPackageAPIView(generics.UpdateAPIView):
     queryset = Package.objects.all()
     serializer_class = AddPackageSerializer
 
-
 class PackageListCreate(generics.ListCreateAPIView):
-    queryset = Package.objects.all()
+    # permission_classes = [permissions.IsAuthenticated]
     serializer_class = PackageSerializer
+    def get_queryset(self):
+        return Package.objects.all().order_by('-created_at')
+
 
 
 class PackageRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Package.objects.all()
     serializer_class = PackageSerializer
 
-
 class BookingListCreate(generics.ListCreateAPIView):
-    queryset = Booking.objects.all()
     serializer_class = BookingSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    def get_queryset(self):
+        user = self.request.user
+        print("user", user)
+        if user.is_authenticated:
+            return Booking.objects.filter(user=user).order_by('-created_at')
+        else:
+            return Booking.objects.none()  
+    
+class AddBookingAPIView(generics.CreateAPIView):
+    serializer_class = AddBookingSerializer
+    queryset = Booking.objects.all()
+
 
 
 class BookingRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):

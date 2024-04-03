@@ -29,5 +29,6 @@ urlpatterns = [
 
     # Booking URLs
     path('bookings/', BookingListCreate.as_view(), name='booking-list-create'),
+    path('bookings/add/', AddBookingAPIView.as_view(), name = 'add-new-booking'),
     path('bookings/<int:pk>/', BookingRetrieveUpdateDestroy.as_view(), name='booking-retrieve-update-destroy')
 ]
